@@ -83,3 +83,40 @@ button:hover {
     height: auto; /* you can set a specific height if you want */
     width: auto; /* you can set a specific width if you want */
   }
+
+
+
+  .toggle {
+    padding: 5px 10px;
+    font-size: 12px;
+    background-color: white; /* Start with a white background */
+    color: black; /* Start with black text for the emoji */
+    height: auto;
+    width: auto;
+    border: none; /* Add this if you don't want borders */
+    cursor: pointer; /* Changes cursor to pointer to indicate it's clickable */
+    transition: background-color 0.3s;
+  }
+  
+  .green {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  
+  .white {
+    background-color: white;
+  }
+  
+  .red {
+    background-color: red;
+  }
+
+  .toggle:not(.green):not(.red):hover {
+    background-color: #e0e0e0; /* Light grey on hover */
+  }
+  
+  /* Keep the active and red buttons from changing color on hover */
+  .green:hover,
+  .red:hover {
+    background-color: inherit;
+  }

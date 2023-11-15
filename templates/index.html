@@ -62,21 +62,16 @@
     <script src="https://unpkg.com/vue@next"></script>
     <div id="app">
         <div class="search-wrapper panel-heading col-sm-12">
-            <input type="text" v-model="search" placeholder="Search" /> <br> <br>
-            <!-- <button type="button" @click="findPinOnMap(business)"> -->
-                <!-- Search
-            </button> -->
+            <input type="text" v-model="search" placeholder="Search"/> <br> <br>
         </div>  
         <table class="table" id="myTable">
             <tbody>
                 <tr v-for="business in filteredBusinesses" :key="business.id">
                     <td>
                         <form method="post" action="/">
-                            <!-- <input type="hidden" name="searchQuery" :value="business.name"> -->
                             <input type="hidden" name="searchQuery" :value="JSON.stringify(business)">
                             <!-- <input type="hidden" name="searchQueryName" :value="business.name"> -->
                             <button type="submit" class="business-option-button">
-                                <!-- {{ business }} -->
                                 {{ business.name }}
                             </button>
                             <button type="button" class="load-pin-button" @click="findPinOnMap(business)">

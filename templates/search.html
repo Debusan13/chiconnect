@@ -10,22 +10,52 @@
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=[[api_key]]'></script>
 
     <script type='text/javascript' src="[[ url_for('static', filename='search.js') ]]" defer></script>
+    <style>
+        .businessInformation {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    
     <div id="search">
         
         <button type="button" @click="goBack" class="small-button">Back to Home</button>
 
-        <h1><span id="name"></h1>
-        <h2><span id="description"></span></h2>
-        <h2><span id="phone"></span></h2>
-        <h2><span id="address"></span></h2>
-        <h2><span id="thumbsUp"></span></h2>
-        <h2><span id="reviews"></span></h2>
+        <!-- <button type="button"  @click="goToReviewPage" class="small-button">Review</button> -->
+
+
+        <form method="post" action="/search">
+            <input type="hidden" name="searchQuery" id="businessName" :value=""/>
+            <button type="submit" class="small-button">
+                Review
+            <!-- <input type="hidden" name="searchQueryName" :value="business.name"> -->
+                <!-- {{ business }} -->
+                <!-- {{ business.name }} -->
+            </button>
+        </form>
         
         <script type='text/javascript'>
             var data = JSON.parse([[query | tojson | safe]]);
+            document.getElementById("businessName").value = data.name;
+            console.log(data.name);
+        </script>
+        
+        <!-- <button type="button" @click="goBack" class="small-button">Back to Home</button> -->
+
+        <div class="businessInformation">
+            <h1><span id="name"></h1>
+            <h2><span id="description"></span></h2>
+            <h2><span id="phone"></span></h2>
+            <h2><span id="address"></span></h2>
+            <h2>Rating: <span id="thumbsUp"></span></h2>
+            <h2><span id="reviews"></span></h2>
+        </div>
+        <!-- <input type="hidden" name="searchQueryName" :value="data.name"> -->
+
+        <script type='text/javascript'>
             var reviews = data.reviews;
+            // var name = data.name;
 
             document.getElementById("name").innerHTML = data.name;
             document.getElementById("description").innerHTML = data.description;
@@ -34,8 +64,8 @@
             document.getElementById("thumbsUp").innerHTML = data.thumbsUp;
 
             for (var x = 0; x < reviews.length; x++) {
-
-                document.write("<h2>"+reviews[x].description+"</h2>")
+                document.write("<h3>"+reviews[x].username+": "+reviews[x].description+"</h3>")
+                // document.write("<h2>"+reviews[x].description+"</h2>")
             }
             
         </script>
@@ -52,5 +82,25 @@
             </form>
         </div>
     </div>
+    <!-- In your reviews.html file -->
+    <div id="review-app">
+        <div>
+          <button id="thumbs-up" type="toggle" class="button inactive" @click="submitReview('up')">👍</button>
+          <button id="thumbs-down" type="toggle" class="button inactive" @click="submitReview('down')">👎</button>
+        </div>
+    </div>
+    <div id="review-app">
+        <div>
+            <button type="button" @click="Submit" class="small-button">Submit</button>
+        </div>
+    </div>
+    <!-- <div>
+        <button :type="button" @click="submitReview('up')" class="active">Friendly Staff </button>
+        <button :type="button" @click="submitReview('down')" class="active">Fair Pricing </button>
+        <button :type="button" @click="submitReview('up')" class="active">Friendly Staff </button>
+        <button :type="button" @click="submitReview('down')" class="active">Fair Pricing </button>
+      </div> -->
+  </div>
+  
 </body>
 </html>

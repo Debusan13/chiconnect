@@ -6,7 +6,7 @@
         "open": "Open",
         "closeTime": "6pm",
         "address": "1750 W 18th St, Chicago, IL 60608",
-        "phone": "9086661234",
+        "phone": "908-666-1234",
         "images": "https://pbs.twimg.com/ext_tw_video_thumb/1446431430926643200/pu/img/WL1YOdxXMvdREoZi.jpg",
         "thumbsUp": 10,
         "lat": 41.8, 
@@ -15,11 +15,13 @@
         "reviews": [
             {
                 "review_id": 1,
-                "description": "HI"
+                "username": "Bob",
+                "description": "Friendly staff"
             },
             {
                 "review_id": 2,
-                "description": "HELLO WORLD"
+                "username": "Jess",
+                "description": "Fair pricing"
             }
         ]
     },
@@ -30,7 +32,7 @@
         "open": "Open",
         "closeTime": "9pm",
         "address": "200 S Wacker St, Chicago, IL 60608",
-        "phone": "9086561234",
+        "phone": "908-656-1234",
         "thumbsUp": 6,
         "lat": 41.81, 
         "long": -87.75,
@@ -43,7 +45,7 @@
         "open": "Open",
         "closeTime": "6:30pm",
         "address": "600 N. Green St, Chicago, IL 60608",
-        "phone": "8476661234",
+        "phone": "847-666-1234",
         "thumbsUp": 12,
         "lat": 41.8710589, 
         "long": -87.6782527,
@@ -56,7 +58,7 @@
         "open": "Open",
         "closeTime": "7:30pm",
         "address": "809 S. Damen St, Chicago, IL 60608",
-        "phone": "1234446666",
+        "phone": "123-444-6666",
         "thumbsUp": 3,
         "lat": 41.85, 
         "long": -87.69,

@@ -4,6 +4,56 @@ function getQuery() {
     return myVar;
 }
 
+async function reviews(query, lat, long) {
+    const res = await fetch('http://127.0.0.1:5000/review' + new URLSearchParams({
+        query, lat, long
+    }));
+
+    searchResults.value = await res.json();
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const thumbsUp = document.getElementById('thumbs-up');
+    const thumbsDown = document.getElementById('thumbs-down');
+  
+    thumbsUp.addEventListener('click', () => {
+    //   thumbsUp.classList.add('active');
+    //   thumbsUp.classList.remove('inactive');
+    //   thumbsDown.classList.remove('red');
+    //   thumbsDown.classList.add('inactive');
+
+      if (thumbsUp.classList.contains('green')) {
+        // If thumbs up is already active, deactivate it
+        thumbsUp.classList.remove('green');
+      } else {
+        // If thumbs up is not active, activate it and deactivate thumbs down
+        thumbsUp.classList.add('green');
+        thumbsUp.classList.remove('white');
+        thumbsDown.classList.remove('red');
+        thumbsDown.classList.add('white');
+      }
+    });
+  
+    thumbsDown.addEventListener('click', () => {
+    //   thumbsDown.classList.add('red');
+    //   thumbsDown.classList.remove('inactive');
+    //   thumbsUp.classList.remove('green');
+    //   thumbsUp.classList.add('inactive');
+
+      if (thumbsDown.classList.contains('red')) {
+        // If thumbs down is already active, deactivate it
+        thumbsDown.classList.remove('red');
+      } else {
+        // If thumbs down is not active, activate it and deactivate thumbs up
+        thumbsDown.classList.add('red');
+        thumbsDown.classList.remove('white');
+        thumbsUp.classList.remove('green');
+        thumbsUp.classList.add('white');
+      }
+    });
+  });
+
+
 
 // async function getBusinessInfo() {
 //     let businesses;
@@ -28,6 +78,7 @@ createApp({
             selectedBusiness: [],
             search: "",
             existingPins: {},
+            review: null,
         };
       },
     computed: {
@@ -57,6 +108,16 @@ createApp({
         //         console.error('Failed to get business info:', error);
         //     }
         // },
+        
+        goToReviewPage() {
+
+            const businessName =selectedBusiness;
+            // Encode the business name to be URL-safe
+            const queryParams = new URLSearchParams({ query: businessName });
+            // Redirect to the review page with the query included
+            window.location.href = `/review?${queryParams.toString()}`;
+
+        },
         goBack() {
             console.log('Existing pins before leaving:', this.existingPins);
             this.savePins();
@@ -96,6 +157,7 @@ createApp({
                 map.setView({ center: this.existingPins[businessKey].getLocation(), zoom: 25 });
             }
         },
+        
     },
     
     mounted() {

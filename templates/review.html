@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ChiConnect</title>
+    
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+    <link rel="stylesheet" type="text/css" href="[[ url_for('static', filename='styles/index.css') ]]">
+    
+    <script type='text/javascript' src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=[[api_key]]'></script>
+
+    <script type='text/javascript' src="[[ url_for('static', filename='search.js') ]]" defer></script>
+</head>
+<body>
+    <div id="search">
+        
+        <button type="button" @click="backToBusiness" class="small-button">Back to Business</button>
+
+
+        <button type="button" @click="goBack" class="small-button">Back to Home</button>
+        <h1>[[ businessName ]]</h1>
+        <h1><span id="name"></h1>
+        <!-- <h2><span id="description"></span></h2>
+        <h2><span id="phone"></span></h2>
+        <h2><span id="address"></span></h2>
+        <h2><span id="thumbsUp"></span></h2>
+        <h2><span id="reviews"></span></h2> -->
+        
+        <script type='text/javascript'>
+            // var data = JSON.parse([[query | tojson | safe]]);
+            // var reviews = data.reviews;
+
+            // document.getElementById("name").innerHTML = data.name;
+            // document.getElementById("description").innerHTML = data.description;
+
+            // document.getElementById("phone").innerHTML = data.phone;
+            // document.getElementById("address").innerHTML = data.address;
+            // document.getElementById("thumbsUp").innerHTML = data.thumbsUp;
+
+            for (var x = 0; x < reviews.length; x++) {
+
+                document.write("<h2>"+reviews[x].description+"</h2>")
+            }
+            
+        </script>
+        <!-- <div class="search-wrapper panel-heading col-sm-12">
+            <input type="text" v-model="search" placeholder="Search" /> <br> <br>
+        </div>   -->
+        
+        <div id='printoutPanel'></div>
+        
+        <!-- <div id='myMap' style='width: 100vw; height: 100vh;'></div> -->
+        <div id='mapOverlay'>
+            <form action="https://forms.gle/j56hbj8SsZWFvM388" method="get" target="_blank">
+                <button type="submit" id="addBusinessButton">Add Business</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

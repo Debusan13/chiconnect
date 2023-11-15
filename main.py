@@ -6,11 +6,24 @@ app = Flask(__name__)
 app.jinja_env.variable_start_string = '[['
 app.jinja_env.variable_end_string = ']]'
 
+# @app.route("/review", methods=['GET'])
+# def review_page():
+#     return render_template("review.html")
 
-@app.route("/search", methods=['GET'])
+@app.route("/review", methods=['GET'])
+def review():
+    businessName = request.args.get('businessName')
+    print(f'QUERY IN REVIEW: {businessName}')
+    # return render_template("review.html", api_key=API_KEY, Name=businessName)
+
+@app.route("/search", methods=['GET', 'POST'])
 def search():
     query = request.args.get('query')
-    # print(f'user searched for: {query}')
+    print(f'user searched for: {query}')
+    if request.method == 'POST':
+        businessName = request.form.get('businessName', '')
+        # query = request.form.get('searchQuery', '')
+        return redirect(url_for('review', businessName=businessName))
     return render_template("search.html", api_key=API_KEY, query=query)
 
 # @app.route("/search/<input>", methods=['GET'])
@@ -20,11 +33,9 @@ def search():
 def home_page():
     if request.method == 'POST':
         query = request.form.get('searchQuery', '')
-        name = request.form.get('searchQueryName', '')
+        # name = request.form.get('searchQueryName', '')
         # Here you would typically process the search_query.
         # For now, we're just passing it back to the template.
-        print(query)
-        print(type(query))
         return redirect(url_for('search', query=query))
 
         # return render_template("index.html", api_key=API_KEY, search_query=search_query)
