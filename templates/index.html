@@ -12,7 +12,7 @@
     <script type='text/javascript' src="[[ url_for('static', filename='index.js') ]]" defer></script>
 
     <script type='text/javascript'>
-        var map;
+        var map; 
         var pushpin;
         var navigationBarMode;
         function loadMapScenario() {
@@ -30,13 +30,13 @@
                     zoom: 10
                 });
 
-                // pushpin = new Microsoft.Maps.Pushpin(loc, {
-                //     icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
-                //     anchor: new Microsoft.Maps.Point(12, 39),
-                //     text: 'You',
-                //     textOffset: new Microsoft.Maps.Point(0, 5)
-                // });
-                // map.entities.push(pushpin);
+                pushpin = new Microsoft.Maps.Pushpin(loc, {
+                    icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+                    anchor: new Microsoft.Maps.Point(12, 39),
+                    text: 'You',
+                    textOffset: new Microsoft.Maps.Point(0, 5)
+                });
+                map.entities.push(pushpin);
             }, function (error) {
                 // If user denies location access or an error occurs, initialize the map with a default location
                 var defaultLoc = new Microsoft.Maps.Location(47.6062, -122.3321); // Example default location (Seattle)
@@ -72,8 +72,11 @@
                 <tr v-for="business in filteredBusinesses" :key="business.id">
                     <td>
                         <form method="post" action="/">
-                            <input type="hidden" name="searchQuery" :value="business.name">
+                            <!-- <input type="hidden" name="searchQuery" :value="business.name"> -->
+                            <input type="hidden" name="searchQuery" :value="JSON.stringify(business)">
+                            <!-- <input type="hidden" name="searchQueryName" :value="business.name"> -->
                             <button type="submit" class="business-option-button">
+                                <!-- {{ business }} -->
                                 {{ business.name }}
                             </button>
                             <button type="button" class="load-pin-button" @click="findPinOnMap(business)">

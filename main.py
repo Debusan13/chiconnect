@@ -10,7 +10,7 @@ app.jinja_env.variable_end_string = ']]'
 @app.route("/search", methods=['GET'])
 def search():
     query = request.args.get('query')
-    print(f'user searched for: {query}')
+    # print(f'user searched for: {query}')
     return render_template("search.html", api_key=API_KEY, query=query)
 
 # @app.route("/search/<input>", methods=['GET'])
@@ -20,9 +20,11 @@ def search():
 def home_page():
     if request.method == 'POST':
         query = request.form.get('searchQuery', '')
+        name = request.form.get('searchQueryName', '')
         # Here you would typically process the search_query.
         # For now, we're just passing it back to the template.
-
+        print(query)
+        print(type(query))
         return redirect(url_for('search', query=query))
 
         # return render_template("index.html", api_key=API_KEY, search_query=search_query)

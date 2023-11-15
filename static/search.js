@@ -1,41 +1,73 @@
 const { createApp, onMounted, ref } = Vue
 
-async function getBusinesses() {
-    let businesses;
-    const res = await fetch('static/businesses.json')
-    businesses = await res.json()
-    return businesses
+function getQuery() {
+    return myVar;
 }
 
-// function getBusinessInfo() {
-    
+
+// async function getBusinessInfo() {
+//     let businesses;
+//     const res = await fetch('static/businesses.json')
+//     businesses = await res.json()
+//     let businessInfo;
+//     businessInfo = businesses.filter(b => b.name === businessName);
+//     return businessInfo
 // }
+
+// async function getBusinessInfo() {
+//     let businessInfo;
+//     businessInfo = businesses.filter(b => b.name === query);
+//     return businessInfo
+// }
+
+// var d_var = $("#elem").val(); 
 
 createApp({
     data() {
         return {
-            businesses: [],
+            selectedBusiness: [],
             search: "",
-            existingPins: {}
+            existingPins: {},
         };
       },
     computed: {
-        filteredBusinesses() {
-            return this.businesses.filter(b => {
-            if (this.search.length != 0) {
-                return b.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1;
-            }
-          });
-        }
+        // filteredBusinesses() {
+        //     return this.businesses.filter(b => {
+        //     if (this.search.length != 0) {
+        //         return b.name.toLowerCase().indexOf(this.search.toLowerCase()) != -1;
+        //     }
+        //   });
+        // }
+        // getBusinessInfo() {
+        //     let businessInfo;
+        //     businessInfo = businesses.filter(b => b.name === query);
+        //     return businessInfo
+        // }
     },
     methods: {
+        // async getBusinessInfo() {
+        //     try {
+        //         const res = await fetch('static/businesses.json');
+        //         const businesses = await res.json();
+        //         query = getQuery()
+        //         console.log(query)
+        //         this.selectedBusiness = businesses.filter(b => b.name === query);
+        //         console.log(this.selectedBusiness)
+        //     } catch (error) {
+        //         console.error('Failed to get business info:', error);
+        //     }
+        // },
         goBack() {
+            console.log('Existing pins before leaving:', this.existingPins);
             this.savePins();
             window.location.href = '/';
-          },
-          savePins() {
-            localStorage.setItem('existingPins', JSON.stringify(this.existingPins));
-          },
+        },
+        savePins() {
+        console.log('Saving pins:', this.existingPins);
+        localStorage.setItem('existingPins', JSON.stringify(this.existingPins));
+        console.log('Pins saved to local storage');
+        
+        },
         findPinOnMap(business) {
             if (map && business) {
                 // Create a unique identifier for the business
@@ -56,6 +88,8 @@ createApp({
     
                     // Add the pushpin to the existingPins object
                     this.existingPins[businessKey] = newPushpin;
+                    this.savePins()
+                    console.log("test: ", this.existingPins)
                 }
     
                 // Whether it's a new pushpin or existing one, set the map view to center on it and zoom in
@@ -63,13 +97,26 @@ createApp({
             }
         },
     },
+    
     mounted() {
+        // console.log(getQuery(d));
+        // this.search()
+        // this.getBusinessInfo(this.query).then(() => {
+        //     console.log(this.selectedBusiness);
+        // });
 
-        getBusinesses().then(businessesData => {
-            this.businesses = businessesData;
-        }).catch(error => {
-            console.error('Failed to load businesses:', error);
-        }); 
+        // getBusinesses().then(businessesData => {
+        //     this.businesses = businessesData;
+
+        //     query = this.getBusinessName()
+        //     this.getBusinessInfo(query).then(info => {
+        //         console.log(info);
+        //     }).catch(error => {
+        //         console.error('Failed to get business info:', error);
+        //     });
+        // }).catch(error => {
+        //     console.error('Failed to load businesses:', error);
+        // }); 
 
         console.log('mounted');
         this.map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
