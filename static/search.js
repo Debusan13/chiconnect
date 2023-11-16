@@ -15,6 +15,12 @@ async function reviews(query, lat, long) {
 document.addEventListener('DOMContentLoaded', (event) => {
     const thumbsUp = document.getElementById('thumbs-up');
     const thumbsDown = document.getElementById('thumbs-down');
+
+
+    const friendlyStaff = document.getElementById('friendly-staff')
+    const fairPricing = document.getElementById('fair-pricing')
+    const fastService = document.getElementById('fast-service')
+    const clean = document.getElementById('clean')
   
     thumbsUp.addEventListener('click', () => {
     //   thumbsUp.classList.add('active');
@@ -49,6 +55,50 @@ document.addEventListener('DOMContentLoaded', (event) => {
         thumbsDown.classList.remove('white');
         thumbsUp.classList.remove('green');
         thumbsUp.classList.add('white');
+      }
+    });
+
+      friendlyStaff.addEventListener('click', () => {
+      if (friendlyStaff.classList.contains('green')) {
+        friendlyStaff.classList.remove('green');
+        friendlyStaff.classList.add('white');
+      }
+      else {
+        friendlyStaff.classList.remove('white');
+        friendlyStaff.classList.add('green');
+      }
+    });
+
+      fairPricing.addEventListener('click', () => {
+      if (fairPricing.classList.contains('green')) {
+        fairPricing.classList.remove('green');
+        fairPricing.classList.add('white');
+      }
+      else {
+        fairPricing.classList.remove('white');
+        fairPricing.classList.add('green');
+      }
+    });
+
+    fastService.addEventListener('click', () => {
+      if (fastService.classList.contains('green')) {
+        fastService.classList.remove('green');
+        fastService.classList.add('white');
+      }
+      else {
+        fastService.classList.remove('white');
+        fastService.classList.add('green');
+      }
+    });
+
+    clean.addEventListener('click', () => {
+      if (clean.classList.contains('green')) {
+        clean.classList.remove('green');
+        clean.classList.add('white');
+      }
+      else {
+        clean.classList.remove('white');
+        clean.classList.add('green');
       }
     });
   });

@@ -75,6 +75,10 @@ createApp({
                     const newPushpin = new Microsoft.Maps.Pushpin(location, {
                         icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
                         anchor: new Microsoft.Maps.Point(12, 39),
+                        title: business.name,
+                        // roundClickableArea: true,
+                        // enableClickedStyle: true,
+                        // cursor: true
 
                     });
     

@@ -30,13 +30,7 @@
                     zoom: 10
                 });
 
-                pushpin = new Microsoft.Maps.Pushpin(loc, {
-                    icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
-                    anchor: new Microsoft.Maps.Point(12, 39),
-                    text: 'You',
-                    textOffset: new Microsoft.Maps.Point(0, 5)
-                });
-                map.entities.push(pushpin);
+                
             }, function (error) {
                 // If user denies location access or an error occurs, initialize the map with a default location
                 var defaultLoc = new Microsoft.Maps.Location(47.6062, -122.3321); // Example default location (Seattle)

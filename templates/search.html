@@ -85,8 +85,8 @@
     <!-- In your reviews.html file -->
     <div id="review-app">
         <div>
-          <button id="thumbs-up" type="toggle" class="button inactive" @click="submitReview('up')">👍</button>
-          <button id="thumbs-down" type="toggle" class="button inactive" @click="submitReview('down')">👎</button>
+          <button id="thumbs-up" type="toggle" class="button inactive">👍</button>
+          <button id="thumbs-down" type="toggle" class="button inactive" >👎</button>
         </div>
     </div>
     <div id="review-app">
@@ -94,12 +94,12 @@
             <button type="button" @click="Submit" class="small-button">Submit</button>
         </div>
     </div>
-    <!-- <div>
-        <button :type="button" @click="submitReview('up')" class="active">Friendly Staff </button>
-        <button :type="button" @click="submitReview('down')" class="active">Fair Pricing </button>
-        <button :type="button" @click="submitReview('up')" class="active">Friendly Staff </button>
-        <button :type="button" @click="submitReview('down')" class="active">Fair Pricing </button>
-      </div> -->
+    <div>
+        <button id="friendly-staff" type="toggle"  class="button inactive">Friendly Staff </button>
+        <button id="fair-pricing" type="toggle"  class="button inactive">Fair Pricing </button>
+        <button id="fast-service" type="toggle"  class="button inactive">Fast Service </button>
+        <button id="clean" type="toggle"  class="button inactive">Fair Pricing </button>
+      </div>
   </div>
   
 </body>
